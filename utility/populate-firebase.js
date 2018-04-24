@@ -5,7 +5,7 @@ const data = require("./demo-data.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://angular-universal-test-e414c.firebaseio.com"
+  databaseURL: "https://angular-universal-test-e414c.firebaseio.com" // REPLACE WITH YOUR DATABASE URL
 });
 
 const db = admin.firestore();
