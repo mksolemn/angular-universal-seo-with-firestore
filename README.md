@@ -27,7 +27,7 @@ $ npm install --save firebase-admin
   2. Navigate to [Service accounts](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk)
   3. Click "Generate new private key"
  
- You will prompted to download you private key. Copy and paste key file content to service-key-demo.json
+ You will prompted to download you private key. Create /utility/service-key-demo.json file Copy and paste key file content.
  
 ### Update database URL to your database URL
 
