@@ -32,7 +32,7 @@ $ npm install --save firebase-admin
 ### Update database URL to your database URL
 
 ```javascript
-//populate-firebase-demo.js
+// populate-firebase.js
 
 databaseURL: "https://YOUR_DB.firebaseio.com"
 
