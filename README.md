@@ -2,33 +2,17 @@
 
 Build seo friendly Angular application with Angular universal and firestore.
 
-# Step by Step Tutorial
-
 ## Generate Angular project
 
-1. Generate new project called "universal-seo"
+Generate new project as you please, but keeping these settings will make it easier to follow, but they're not required.
 ```
-$ ng new universal-seo
-```
-2. Change application prefix to "seo"
-```
-$ --prefix=seo
-```
-3. Use scss for styles
-```
-$ --style=scss
-```
-4. Generate routing module:
-```
-$ --routing
-```
-5. All together
-```
-
 $ ng new universal-seo --prefix=seo --style=scss --routing
-
 ```
 
+1. Generate new project called "universal-seo": ng new universal-seo
+2. Change application prefix to "seo": --prefix=seo
+3. Use scss for styles: --style=scss
+4. Generate routing module: --routing
 
 ## Populate your firestore with demo data
 
@@ -56,7 +40,7 @@ databaseURL: "https://YOUR_DB.firebaseio.com"
 ```
 
 ### Populate database using nodejs
-Make sure in in /utility directory before you run the script.
+Make sure you're in /utility directory before you run the script.
 
 ```javascript
 
