@@ -16,17 +16,16 @@ $ ng new universal-seo --prefix=seo --style=scss --routing
 
 ## Populate your firestore with demo data
 
-### Navigate to utility directory
-
-### Install Firebase Admin Node.js SDK
+### Navigate to utility directory & Install Firebase Admin Node.js SDK
 ```
+$ cd utility
 $ npm install --save firebase-admin
 ```
 
 ### Create service-key.json file
-  2.1 Go to [Firebase console](https://console.firebase.google.com/)
-  2.2 Navigate to [Service accounts](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk)
-  2.3 Click "Generate new private key"
+  1. Go to [Firebase console](https://console.firebase.google.com/)
+  2. Navigate to [Service accounts](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk)
+  3. Click "Generate new private key"
  
  You will prompted to download you private key. Copy and paste key file content to service-key-demo.json
  
