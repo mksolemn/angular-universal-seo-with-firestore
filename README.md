@@ -23,7 +23,6 @@ $ --style=scss
 $ --routing
 ```
 5. All together
-
 ```
 
 $ ng new universal-seo --prefix=seo --style=scss --routing
@@ -53,11 +52,15 @@ $ npm install --save firebase-admin
 //populate-firebase-demo.js
 
 databaseURL: "https://YOUR_DB.firebaseio.com"
+
 ```
 
+### Populate database using nodejs
+Make sure in in /utility directory before you run the script.
 
+```javascript
 
-//TODO:
- read firestore docs to post data
- custom script to populate firestore DB in bulk
+node populate-firebase
+
+```
  
