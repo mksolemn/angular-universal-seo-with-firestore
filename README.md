@@ -1,27 +1,63 @@
 # UniversalSeo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.0.
+Build seo friendly Angular application with Angular universal and firestore.
 
-## Development server
+# Step by Step Tutorial
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Generate Angular project
 
-## Code scaffolding
+1. Generate new project called "universal-seo"
+```
+$ ng new universal-seo
+```
+2. Change application prefix to "seo"
+```
+$ --prefix=seo
+```
+3. Use scss for styles
+```
+$ --style=scss
+```
+4. Generate routing module:
+```
+$ --routing
+```
+5. All together
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
 
-## Build
+$ ng new universal-seo --prefix=seo --style=scss --routing
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+```
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Populate your firestore with demo data
 
-## Running end-to-end tests
+### Navigate to utility directory
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Install Firebase Admin Node.js SDK
+```
+$ npm install --save firebase-admin
+```
 
-## Further help
+### Create service-key.json file
+  2.1 Go to [Firebase console](https://console.firebase.google.com/)
+  2.2 Navigate to [Service accounts](https://console.firebase.google.com/project/_/settings/serviceaccounts/adminsdk)
+  2.3 Click "Generate new private key"
+ 
+ You will prompted to download you private key. Copy and paste key file content to service-key-demo.json
+ 
+### Update database URL to your database URL
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```javascript
+//populate-firebase-demo.js
+
+databaseURL: "https://YOUR_DB.firebaseio.com"
+```
+
+
+
+//TODO:
+ read firestore docs to post data
+ custom script to populate firestore DB in bulk
+ 

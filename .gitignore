@@ -41,3 +41,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# MK only demo allowed
+/utility/populate-firebase.js
+/utility/service-key.json
