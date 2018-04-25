@@ -183,6 +183,7 @@ export class AppComponent {
 ### Import router to app.module.ts
 
 ```javascript
+// app.module.ts
 
   imports: [
     RouterModule
