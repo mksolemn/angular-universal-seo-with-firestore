@@ -54,7 +54,7 @@ e.g. doc(post.email)
 
 ### Install dependencies
 
-We will be using firebase library for Angular [More Abou AngularFire2 here](https://github.com/angular/angularfire2)
+We will be using firebase library for Angular [More About AngularFire2 here](https://github.com/angular/angularfire2)
 
 ```
 npm install firebase angularfire2 --save
@@ -195,4 +195,5 @@ export class AppComponent {
 ```
 ng g c post-page
 ```
-If you're not familiar with this shorthand syntax: g - generate, c - component
+If you're not familiar with Angular CLI aliases: g - generate, c - component.
+This is great [cheatsheet](https://alligator.io/angular/angular-cli-reference/) to help you get comfortable with angular CLI commands.
