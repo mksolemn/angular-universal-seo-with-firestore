@@ -44,4 +44,4 @@ Thumbs.db
 
 # MK only demo allowed
 /utility/service-key.json
-/environments/environment.ts
+/src/environments/environment.ts
