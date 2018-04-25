@@ -11,7 +11,7 @@ admin.initializeApp({
 const db = admin.firestore();
 var batch = db.batch();
 data.forEach((post, i) => {
-  var sfRef = db.collection('posts').doc(post.email);
+  var sfRef = db.collection('posts').doc();
   batch.set(sfRef, post);
 })
 

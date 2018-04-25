@@ -47,3 +47,102 @@ node populate-firebase
 
 ```
  
+This script will push data to collection with firebase push-keys. If you'd like to use custom ids, you may pass them to doc() method.
+e.g. doc(post.email)
+
+## Add firebase to the project
+
+### Install dependencies
+
+We will be using firebase library for Angular [More Abou AngularFire2 here](https://github.com/angular/angularfire2)
+
+```
+npm install firebase angularfire2 --save
+```
+
+### Import library
+```javascript
+// app.component.ts
+
+import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+```
+
+### Setup firebase environment configuration
+This information can be found in your firebase project home page under "Add firebase to your app"
+
+```javascript
+// environment.ts
+
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: '<your-key>',
+    authDomain: '<your-project-authdomain>',
+    databaseURL: '<your-database-URL>',
+    projectId: '<your-project-id>',
+    storageBucket: '<your-storage-bucket>',
+    messagingSenderId: '<your-messaging-sender-id>'
+  }
+};
+```
+
+### Import firebase and environment variables to app.module.ts
+
+```javascript
+// app.module.ts
+
+import {AngularFirestore} from 'angularfire2/firestore';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+
+...
+
+  imports: [
+    ...
+    AngularFireModule.initializeApp(environment.firebase)
+  ],
+  providers: [AngularFirestore]
+  ...
+
+```
+
+### Test project
+Before we continue, it's good idea to test if everything done up to this point is working. For the next step we'll fetch data from firebase and display in our app component.
+
+Output list of usernames:
+
+```javascript
+// app.component.html
+
+<ul>
+  <li *ngFor="let post of posts | async">
+    {{ post.username }}
+  </li>
+</ul>
+<router-outlet></router-outlet>
+
+```
+
+Fetch posts from firebase:
+
+```javascript
+// app.component.ts
+
+import { Component } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
+
+@Component({
+  selector: 'seo-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+  public posts: Observable<any[]>;
+  constructor(db: AngularFirestore) {
+    this.posts = db.collection('posts').valueChanges();
+  }
+}
+
+```
