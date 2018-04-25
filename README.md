@@ -146,3 +146,53 @@ export class AppComponent {
 }
 
 ```
+
+If everything is working on your side, lets continue building router and pages. I know it's tempting to jump to ssr and Angular Universal, but it's important to setup everything correctly to get the most of the tutorial.
+
+## Setup Router and pages
+First we rewrite fetching data from firestore, so we are able to use firestore push keys. This is not mandatory, but for most of my projects push keys are essential, so I think it's good to know how to retrieve them from firestore.
+
+```javascript
+// app.component.ts
+
+export class AppComponent {
+  private postRef: AngularFirestoreCollection<any>;
+  posts: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+  postId: Observable<any[]>;
+
+  constructor(db: AngularFirestore) {
+    this.postRef = db.collection('posts');
+
+    this.postId = this.postRef.snapshotChanges()
+      .map(changes => {
+        return changes.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return {_id: id, ...data};
+        });
+      });
+
+    this.postId
+      .subscribe(docs => {
+        this.posts.next(docs);
+    });
+  }
+}
+```
+
+### Import router to app.module.ts
+
+```javascript
+
+  imports: [
+    RouterModule
+    ...
+    ]
+
+```
+
+### Create new component PostPageComponent - this will display single post
+```
+ng g c post-page
+```
+If you're not familiar with this shorthand syntax: g - generate, c - component
