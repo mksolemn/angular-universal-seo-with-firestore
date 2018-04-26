@@ -355,11 +355,10 @@ And now we can render our view with data from firestore.
 </div>
 ```
 
+### Test project ![alt text](https://github.com/mksolemn/angular-universal-seo-with-firestore/blob/master/src/assets/img/sanity-check.jpg "Sanity check")
+If all is well, we can finally move on to Angular Universal. If you're seeing errors, clone this project, compare the code and if you're still stuck leave a comment or contact me, I will help you asap.
+
 ## Implementing Angular Universal
-Finally we're done with all boilerplate, while it may have been painful, hopefully it will make it easies to understand better how Angular Universal works and maybe you learned something new on the way.
-
-
-
 
 
 #### Resources:
