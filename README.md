@@ -185,7 +185,7 @@ export class AppComponent implements OnInit {
 ```
 
 And we move everything to posts.service.ts
-In case you're IDE doesn't automatically take care of imports, you can check project code on github and copy the imports.
+In case your IDE doesn't automatically take care of imports, you can check project code on github and copy the imports.
 
 ```javascript
 // posts.service.ts
