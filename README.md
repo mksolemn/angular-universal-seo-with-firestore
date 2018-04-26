@@ -2,6 +2,12 @@
 
 Build seo friendly Angular application with Angular universal and firestore.
 
+## Using the tutorial
+Since tutorial is pretty long I do my best to make it easy to follow, no matter your level of expertise in Angular. Hopefully some visuals will help me guide you through this.
+
+![alt text](https://github.com/mksolemn/angular-universal-seo-with-firestore/blob/master/src/assets/img/004-idea.png "Sanity check") - this indicates sanity check alert, when you see this, it's time compile the code and check for any errors
+
+
 ## Generate Angular project
 
 Generate new project as you please, but keeping these settings will make it easier to follow, but they're not required.
