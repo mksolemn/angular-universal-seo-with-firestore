@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { PostPageComponent } from './post-page/post-page.component';
 import {RouterModule} from '@angular/router';
 import {PostsService} from './posts.service';
+import {SeoService} from './seo.service';
 
 
 
@@ -23,7 +24,7 @@ import {PostsService} from './posts.service';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [AngularFirestore, PostsService],
+  providers: [AngularFirestore, PostsService, SeoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

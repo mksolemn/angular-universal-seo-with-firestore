@@ -3,6 +3,7 @@ import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firesto
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import {Router} from '@angular/router';
+import {SeoService} from './seo.service';
 
 @Injectable()
 export class PostsService {
@@ -10,7 +11,9 @@ export class PostsService {
   posts: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   postId: Observable<any[]>;
 
-  constructor(public db: AngularFirestore, public router: Router) {
+  constructor(public db: AngularFirestore,
+              public router: Router,
+              public seoService: SeoService) {
     this.postRef = db.collection('posts');
 
     this.postId = this.postRef.snapshotChanges()
@@ -32,7 +35,13 @@ export class PostsService {
     this.postRef = this.db.collection('posts');
     return this.postRef.doc(id).snapshotChanges()
       .map((val) => {
-      return val.payload.data();
+      const post = val.payload.data()
+        this.seoService.generateTags({
+          title: post.name,
+          description: post.company.catchPhrase,
+          image: post.photo
+        })
+      return post;
     });
   }
 

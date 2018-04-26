@@ -4,6 +4,7 @@ Build seo friendly Angular application with Angular universal and firestore.
 
 ## Using the tutorial
 Since tutorial is pretty long I do my best to make it easy to follow, no matter your level of expertise in Angular. Hopefully some visuals will help me guide you through this.
+Tutorial is divided into sections, after each section you should test your code, as debugging later may become very painful.
 
 ![alt text](https://github.com/mksolemn/angular-universal-seo-with-firestore/blob/master/src/assets/img/sanity-check.jpg "Sanity check") - this indicates sanity check alert, when you see this, it's time compile the code and check for any errors
 
@@ -360,8 +361,75 @@ If all is well, we can finally move on to Angular Universal. If you're seeing er
 
 ## Implementing Angular Universal
 
+### Setup meta tags
+For this we'll create service that will initiate on each page and generate meta tags. AngularFirebase has great tutorial on this subject [AngularFirebase](https://angularfirebase.com/lessons/server-side-rendering-firebase-angular-universal/)
+```
+ng g s seo
+```
+
+```javascript
+// seo.service.ts
+
+  constructor(private meta: Meta, private titleService: Title) { }
+
+  generateTags(tags) {
+    // default values
+    tags = { 
+      title: 'Angular SSR', 
+      description: 'My SEO friendly Angular Component', 
+      image: 'https://angularfirebase.com/images/logo.png',
+      slug: '',
+      ...tags
+    }
+
+    // Set a title
+    this.titleService.setTitle(tags.title);
+
+    // Set meta tags
+    this.meta.updateTag({ name: 'twitter:card', content: 'summary' });
+    this.meta.updateTag({ name: 'twitter:site', content: '@angularfirebase' });
+    this.meta.updateTag({ name: 'twitter:title', content: tags.title });
+    this.meta.updateTag({ name: 'twitter:description', content: tags.description });
+    this.meta.updateTag({ name: 'twitter:image', content: tags.image });
+
+    this.meta.updateTag({ property: 'og:type', content: 'article' });
+    this.meta.updateTag({ property: 'og:site_name', content: 'AngularFirebase' });
+    this.meta.updateTag({ property: 'og:title', content: tags.title });
+    this.meta.updateTag({ property: 'og:description', content: tags.description });
+    this.meta.updateTag({ property: 'og:image', content: tags.image });
+    this.meta.updateTag({ property: 'og:url', content: `https://yourapp.com/${tags.slug}` });
+  }
+
+```
+
+### Modify posts.service.ts
+We need to modify our service a bit in order to updated meta tags for each page.
+```javascript
+...
+  getPost(id): Observable<any> {
+    this.postRef = this.db.collection('posts');
+    return this.postRef.doc(id).snapshotChanges()
+      .map((val) => {
+      const post = val.payload.data()
+        this.seoService.generateTags({
+          title: post.name,
+          description: post.company.catchPhrase,
+          image: post.photo
+        })
+      return post;
+    });
+  }
+...
+```
+
+Ok, now the boilerplate is done.
+
+### Install Angular Universal dependencies
+```
+npm install --save @angular/platform-server @nguniversal/module-map-ngfactory-loader ts-loader
+```
 
 #### Resources:
-
+[Server Side Rendering with Firebase & Angular Universal](https://angularfirebase.com/lessons/server-side-rendering-firebase-angular-universal/)
 
 Kitty images from: [FreePik](http://www.freepik.com/)
