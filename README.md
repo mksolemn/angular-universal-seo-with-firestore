@@ -1,4 +1,4 @@
-# UniversalSeo
+# Angular Universal SEO
 
 Build seo friendly Angular application with Angular universal and firestore.
 
@@ -6,6 +6,8 @@ Build seo friendly Angular application with Angular universal and firestore.
 Since tutorial is pretty long I do my best to make it easy to follow, no matter your level of expertise in Angular. Hopefully some visuals will help me guide you through this.
 
 ![alt text](https://github.com/mksolemn/angular-universal-seo-with-firestore/blob/master/src/assets/img/sanity-check.jpg "Sanity check") - this indicates sanity check alert, when you see this, it's time compile the code and check for any errors
+
+If at any point you're unable to follow the tutorial, please comment or contact me, I'll update the tutorial with any necessary changes.
 
 
 ## Generate Angular project
@@ -290,6 +292,77 @@ If you'd like to add some styling copy styles.scss file from github repo.
 ```
 ng g c post-page
 ```
-If you're not familiar with Angular CLI aliases: g - generate, c - component.
+If you're not familiar with Angular CLI aliases: g - generate, c - component, s - service.
 This is great [cheatsheet](https://alligator.io/angular/angular-cli-reference/) to help you get comfortable with angular CLI commands.
 
+### Fetch single document from firestore
+While this is not necessary in our case, cause we could just pass post that's stored on "post" variable. I'd like this tutorial to extensive and provide you with knowledge that you most definitely will need for most of your projects.
+
+```javascript
+// posts.service.ts
+
+  getPost(id): Observable<any> {
+    this.postRef = this.db.collection('posts');
+    return this.postRef.doc(id).snapshotChanges()
+      .map((val) => {
+      return val.payload.data();
+    });
+  }
+```
+
+### Display post on post-page.component.html
+For this we'll need to watch our url for changes using "params" observable. Then we will fetch data from firestore.
+
+```javascript
+// post-page.component.ts
+
+export class PostPageComponent implements OnInit {
+  public pathSegment;
+  public currentPost;
+
+  constructor(public route: ActivatedRoute,
+              public postsService: PostsService) {
+       this.route.params
+      .subscribe((params: Params) => {
+        this.postsService.getPost(params['id'])
+          .subscribe((val) => {
+            console.log(val);
+            this.currentPost = val;
+          });
+    })
+  }
+
+  ngOnInit() {
+
+  }
+
+}
+```
+
+And now we can render our view with data from firestore.
+
+```javascript
+// post-page.component.html
+
+<div class="post-wrapper" *ngIf="currentPost">
+  <h3>{{currentPost.name}}</h3>
+  <img [src]="currentPost.photo" alt="">
+  <h2>{{currentPost.company.name}}</h2>
+  <ul>
+    <li>Catch phrase: {{currentPost.company.catchPhrase}}</li>
+    <li>BS: {{currentPost.company.bs}}</li>
+  </ul>
+</div>
+```
+
+## Implementing Angular Universal
+Finally we're done with all boilerplate, while it may have been painful, hopefully it will make it easies to understand better how Angular Universal works and maybe you learned something new on the way.
+
+
+
+
+
+#### Resources:
+
+
+Kitty images from: [FreePik](http://www.freepik.com/)

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
@@ -10,7 +10,7 @@ export class PostsService {
   posts: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   postId: Observable<any[]>;
 
-  constructor(db: AngularFirestore, public router: Router) {
+  constructor(public db: AngularFirestore, public router: Router) {
     this.postRef = db.collection('posts');
 
     this.postId = this.postRef.snapshotChanges()
@@ -27,4 +27,13 @@ export class PostsService {
         this.posts.next(docs);
       });
   }
+
+  getPost(id): Observable<any> {
+    this.postRef = this.db.collection('posts');
+    return this.postRef.doc(id).snapshotChanges()
+      .map((val) => {
+      return val.payload.data();
+    });
+  }
+
 }

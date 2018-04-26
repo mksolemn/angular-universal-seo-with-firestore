@@ -1,29 +1,31 @@
 @import url('https://fonts.googleapis.com/css?family=Anton');
 
 html, body {
-  padding:0px;
-  margin:0px;
+  padding: 0px;
+  margin: 0px;
   width: 100%;
   height: 100%;
 }
 
-a,p {
+a, p {
   font-family: 'Anton', sans-serif;
   letter-spacing: 1px;
 }
-
-.user-list {
+ul {
   list-style-type: none;
-  padding:0px;
-  margin:0px;
+  padding: 0px;
+  margin: 0px;
+}
+.user-list {
   padding: 0px 16px;
   background: #2d3436;
-  height:100%;
-  width:100%;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
   li {
-    display:block;
+    display: block;
     a {
-      display:block;
+      display: block;
       text-decoration: none;
       color: #dfe6e9;
       padding: 8px 16px;
@@ -35,16 +37,22 @@ a,p {
   }
 }
 
-.left,.right {
-  height: 100%;
-  display: inline-block;
+.left, .right {
+  flex: 1;
 }
 
 .left {
-  width: 30%;
-  min-width: 200px;
+  min-width: 40%;
 }
 
 .right {
-  width: 70%;
+  min-width: 60%;
 }
+.post-wrapper {
+  padding: 16px;
+  font-color: #333;
+  img {
+    max-width: 200px;
+  }
+}
+
