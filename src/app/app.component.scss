@@ -10,9 +10,9 @@ a,p {
   padding:0px;
   margin:0px;
   padding: 0px 16px;
-  max-width: 200px;
   background: #2d3436;
   height:100%;
+  width:100%;
   li {
     display:block;
     a {
@@ -27,3 +27,18 @@ a,p {
     }
   }
 }
+
+.left,.right {
+  height: 100%;
+  display: inline-block;
+}
+
+.left {
+  width: 30%;
+  min-width: 200px;
+}
+
+.right {
+  width: 70%;
+}
+
