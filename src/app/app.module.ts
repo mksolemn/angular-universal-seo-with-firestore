@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { PostPageComponent } from './post-page/post-page.component';
 import {RouterModule} from '@angular/router';
+import {PostsService} from './posts.service';
 
 
 
@@ -22,7 +23,7 @@ import {RouterModule} from '@angular/router';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase)
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, PostsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

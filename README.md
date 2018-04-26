@@ -150,10 +150,45 @@ export class AppComponent {
 If everything is working on your side, lets continue building router and pages. I know it's tempting to jump to ssr and Angular Universal, but it's important to setup everything correctly to get the most of the tutorial.
 
 ## Setup Router and pages
+
+### Create service to handle request to fetch posts
+```
+ng g s posts
+```
+
 First we rewrite fetching data from firestore, so we are able to use firestore push keys. This is not mandatory, but for most of my projects push keys are essential, so I think it's good to know how to retrieve them from firestore.
 
-```javascript
+### Clear app.component.ts
+We will move all functionality related to data retrieving to separate service, so your app.component.ts will look like this now:
+```
 // app.component.ts
+
+import {Component, OnInit} from '@angular/core';
+import {PostsService} from './posts.service';
+
+@Component({
+  selector: 'seo-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent implements OnInit {
+
+  constructor(public postsService: PostsService) {
+
+  }
+
+  ngOnInit() {
+  }
+
+}
+
+```
+
+And we move everything to posts.service.ts
+In case you're IDE doesn't automatically take care of imports, you can check project code on github and copy the imports.
+
+```javascript
+// posts.service.ts
 
 export class AppComponent {
   private postRef: AngularFirestoreCollection<any>;
@@ -180,17 +215,69 @@ export class AppComponent {
 }
 ```
 
-### Import router to app.module.ts
+### Create routes
+
+```
+// app-routing.module.ts
+...
+const routes: Routes = [
+  {
+    path: 'post',
+    children: [
+      {path: ':id', component: PostPageComponent}
+    ]
+  }
+];
+...
+```
+
+
+### Update app.component.html to subscribe to data from posts.service.ts
+```
+// app.component.html
+
+<div class="left">
+<ul class="user-list">
+  <li *ngFor="let post of postsService.posts | async">
+    <a [routerLink]="['post', post._id]">
+    {{ post.username }}
+    </a>
+  </li>
+</ul>
+</div>
+<div class="right">
+<router-outlet></router-outlet>
+</div>
+
+```
+
+### And finally let's take care of imports
+Your app.module.ts file should look something like this now
 
 ```javascript
 // app.module.ts
 
+imports...
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    PostPageComponent
+  ],
   imports: [
-    RouterModule
-    ...
-    ]
+    RouterModule,
+    BrowserModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase)
+  ],
+  providers: [AngularFirestore, PostsService],
+  bootstrap: [AppComponent]
+})
 
 ```
+
+Time for sanity check again, at this point you should have working navigation, next we will fetch specific post and render it on post-page.component
+If you'd like to add some styling copy styles.scss file from github repo.
 
 ### Create new component PostPageComponent - this will display single post
 ```
@@ -198,3 +285,4 @@ ng g c post-page
 ```
 If you're not familiar with Angular CLI aliases: g - generate, c - component.
 This is great [cheatsheet](https://alligator.io/angular/angular-cli-reference/) to help you get comfortable with angular CLI commands.
+

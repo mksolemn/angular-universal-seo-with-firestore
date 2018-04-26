@@ -1,6 +1,6 @@
 <div class="left">
 <ul class="user-list">
-  <li *ngFor="let post of posts | async">
+  <li *ngFor="let post of postsService.posts | async">
     <a [routerLink]="['post', post._id]">
     {{ post.username }}
     </a>
