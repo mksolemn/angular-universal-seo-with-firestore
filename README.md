@@ -113,7 +113,7 @@ import { environment } from '../environments/environment';
 
 ```
 
-### Test project
+### Test project ![alt text](https://github.com/mksolemn/angular-universal-seo-with-firestore/blob/master/src/assets/img/sanity-check.jpg "Sanity check")
 Before we continue, it's good idea to test if everything done up to this point is working. For the next step we'll fetch data from firebase and display in our app component.
 
 Output list of usernames:
@@ -282,6 +282,7 @@ imports...
 
 ```
 
+### Test project ![alt text](https://github.com/mksolemn/angular-universal-seo-with-firestore/blob/master/src/assets/img/sanity-check.jpg "Sanity check")
 Time for sanity check again, at this point you should have working navigation, next we will fetch specific post and render it on post-page.component
 If you'd like to add some styling copy styles.scss file from github repo.
 
