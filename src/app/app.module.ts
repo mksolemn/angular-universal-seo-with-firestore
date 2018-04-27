@@ -22,7 +22,8 @@ import {SeoService} from './seo.service';
     RouterModule,
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    BrowserModule.withServerTransition({ appId: 'ssr-app' })
   ],
   providers: [AngularFirestore, PostsService, SeoService],
   bootstrap: [AppComponent]
