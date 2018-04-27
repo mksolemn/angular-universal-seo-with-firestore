@@ -45,3 +45,4 @@ Thumbs.db
 # MK only demo allowed
 /utility/service-key.json
 /src/environments/environment.ts
+/functions/node_modules

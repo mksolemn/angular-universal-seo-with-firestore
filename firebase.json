@@ -1,0 +1,20 @@
+{
+  "functions": {
+    "predeploy": [
+      "npm --prefix \"$RESOURCE_DIR\" run lint"
+    ]
+  },
+  "hosting": {
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    // necessary to inform firebase about our functions
+    "rewrites": [{
+      "source": "**",
+      "function": "seoapp"
+    }]
+  }
+}

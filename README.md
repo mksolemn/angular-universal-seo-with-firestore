@@ -431,5 +431,6 @@ npm install --save @angular/platform-server @nguniversal/module-map-ngfactory-lo
 
 #### Resources:
 [Server Side Rendering with Firebase & Angular Universal](https://angularfirebase.com/lessons/server-side-rendering-firebase-angular-universal/)
+[Angular Universal and Firebase Hosting](https://www.youtube.com/watch?v=gxCu5TEmxXE)
 
 Kitty images from: [FreePik](http://www.freepik.com/)
